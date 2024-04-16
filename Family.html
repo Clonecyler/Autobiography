@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoBiography</title>
+    <link rel="stylesheet" href="photo.css">
+</head>
+<body>
+
+  
+<a href="Photos.html">
+<button class="arrow-button left-arrow"></button></a>
+
+  
+<div class="gallery">
+  <img src="Images/Family/437937862_1089700528958469_7303170576845892706_n.jpg" alt="Image 1" class="polaroid" onclick="openModal(this)">
+  <img src="Images/Family/438032522_1452153718732686_1187693482359968281_n.jpg" alt="Image 2" class="polaroid" onclick="openModal(this)">
+  <img src="Images/Family/438033604_440570378422466_2611284964356061793_n.jpg" alt="Image 3" class="polaroid" onclick="openModal(this)">
+  <img src="Images/Family/IMG_6233.PNG" alt="Image 4" class="polaroid" onclick="openModal(this)">
+  
+</div>
+
+<div id="myModal" class="modal">
+  <span class="close" onclick="closeModal()">&times;</span>
+  <a class="prev" onclick="prevImage()">&#10094;</a>
+  <a class="next" onclick="nextImage()">&#10095;</a>
+  <img class="modal-content" id="img01">
+</div>
+
+<script>
+var images = document.getElementsByClassName("polaroid");
+var modalImg = document.getElementById('img01');
+var modal = document.getElementById('myModal');
+var currentImageIndex = 0;
+
+function openModal(img) {
+  modal.style.display = "block";
+  modalImg.src = img.src;
+  currentImageIndex = Array.from(images).indexOf(img);
+}
+
+function closeModal() {
+  modal.style.display = "none";
+}
+
+function prevImage() {
+  currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+  modalImg.src = images[currentImageIndex].src;
+}
+
+function nextImage() {
+  currentImageIndex = (currentImageIndex + 1) % images.length;
+  modalImg.src = images[currentImageIndex].src;
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    closeModal();
+  }
+};
+</script>
+
+</body>
+</html>
